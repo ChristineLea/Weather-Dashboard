@@ -24,7 +24,7 @@ body {
     color: var(--dark);
 	background-color: var(--whiter);
 }
-.mg-xs {
+.pd-xs {
     margin: var(--size-xs);
 }
 /* header */
@@ -52,7 +52,7 @@ h1 {
     grid-gap: var(--size-xs);
 }
 /* CARD */
-.cards {
+.forecast {
     grid-column: 2 / span 1;
     grid-row: 2;
 }

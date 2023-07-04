@@ -62,12 +62,27 @@ h2 {
      grid-column: 1 / span 1;
     grid-row: 1;
 }
-
+/* TODAY WEATHER */
 .today {
     grid-column: 2 / span 1;
     grid-row: 1;
+    padding: var(--size-s);
 }
-
+.location {
+    font-size: var(--size-l);
+}
+.date {
+    font-size: var(--size-m);
+}
+.icon {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+}
+.info {
+    font-size: var(--size-s);
+    margin: var(--size-s) 0;
+}
 /* CARD */
 
 .forecast {

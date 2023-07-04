@@ -31,7 +31,7 @@ function populate(list) {
 	let humidityData = list.main.humidity;
 
 	let dateFormat = new Date(dateData * 1000).toLocaleString();
-	let date = dayjs(dateFormat).format("dddd, DD MMM");
+	let date = dayjs(dateFormat).format("ddd, DD MMM");
 
 	let dateEl = $("<h4>").addClass("card-title").text(date);
 	let iconEl = $("<img>")
@@ -41,12 +41,12 @@ function populate(list) {
 		)
 		.addClass("card-icon");
 	let tempEl = $("<p>").addClass("card-body").text(`Temp: ${tempData} °C`);
-	let windEl = $("<p>").addClass("card-body").text(`Wind: ${windData} MPH`);
+	let windEl = $("<p>").addClass("card-body wind").text(`Wind: ${windData} MPH`);
 	let humidityEl = $("<p>")
 		.addClass("card-body")
 		.text(`Humidity: ${humidityData} %`);
 
-	let cardEl = $("<div>").addClass("card pd-xs");
+	let cardEl = $("<div>").addClass("card");
 	let cardsGrid = $(".cards");
 	cardEl.append(dateEl, iconEl, tempEl, windEl, humidityEl);
 	cardsGrid.append(cardEl);
@@ -72,7 +72,7 @@ function populateToday(id, d) {
 		)
 
 	let tempEl = $("<p>").addClass("info").text(`Temp: ${tempData} °C`);
-	let windEl = $("<p>").addClass("info").text(`Wind: ${windData} MPH`);
+	let windEl = $("<p>").addClass("info wind").text(`Wind: ${windData} MPH`);
 	let humidityEl = $("<p>")
 		.addClass("info")
 		.text(`Humidity: ${humidityData} %`);

@@ -1,6 +1,13 @@
 // test fetch & API
 let obj;
 
+// Add geolocating API
+// http://api.openweathermap.org/geo/1.0/direct?q={city name},{country code}&limit={limit}&appid={API key}
+
+function getLatLon(location) {
+	// location === city,au
+}
+
 function getWeatherApi() {
 	let requestUrl =
 		"https://api.openweathermap.org/data/2.5/forecast?lat=-37.81&lon=144.96&units=metric&appid=7efeea0385eeddc77479b9ad9143d71b";

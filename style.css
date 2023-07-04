@@ -29,13 +29,11 @@ body {
 	color: var(--dark);
 	background-color: var(--white);
 }
+/* UNIVERSAL SIZING */
 .pd-xs {
 	padding: var(--size-xs);
 }
-/* header */
-.header {
-	background-color: var(--lightBlue);
-}
+/* FONT STYLES */
 h1 {
 	font-size: var(--size-xl);
 	padding: var(--size-l);
@@ -50,11 +48,15 @@ h3 {
 	/* margin: var(--size-xs) 0; */
 	font-weight: normal;
 }
-/* MAIN full width */
+/* HEADER */
+.header {
+	background-color: var(--lightBlue);
+}
+/* MAIN */
 .container {
 	background-color: #80d8ffa8;
 }
-/* GRID margin 0 auto */
+/* GRID CONTAINER */
 .grid-container {
 	margin: 0 auto;
 	padding: var(--size-s);
@@ -65,74 +67,20 @@ h3 {
 	align-items: center;
 	grid-gap: var(--size-xs);
 }
-
+/* SEARCH Grid Section */
 .search {
 	grid-column: 1 / span 1;
 	grid-row: 1;
 	align-self: start;
 }
-/* TODAY WEATHER */
-.today {
-	grid-column: 2 / span 1;
-	grid-row: 1;
-	padding: var(--size-s);
-	background-color: #80d8ff78;
-	/* border: 3px solid #80d8ff; */
-	box-shadow: 1px 2px 3px #208662;
+.text {
+	font-size: var(--size-m);
+	margin: 0 0 var(--size-s);
 }
-
-.icon {
-	width: 80px;
-	height: 80px;
-	object-fit: contain;
-	margin: var(--size-s) 0;
-}
-.info {
-	font-size: var(--size-s);
-}
-/* CARD */
+	/* SEARCH : FORM */
 .form {
 	display: flex;
-	/* flex-direction: column; */
 	flex-wrap: wrap;
-}
-.forecast {
-	grid-column: 2 / span 1;
-	grid-row: 2;
-}
-
-.cards {
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	grid-template-rows: 2fr;
-}
-.card {
-	padding: var(--size-xs);
-	margin: var(--size-xs);
-
-	box-shadow: 1px 2px 3px #208662;
-	background-color: #80d8ff78;
-}
-.storage {
-	grid-column: 1 / span 1;
-	grid-row: 2;
-}
-
-/* h3 */
-.card-title {
-	font-size: var(--size-s);
-}
-.card-icon {
-	width: 60px;
-	height: 60px;
-	object-fit: contain;
-	margin: var(--size-s) 0;
-}
-.card-body {
-	font-size: var(--size-xs);
-}
-.wind {
-	margin: var(--size-xs) 0;
 }
 label,
 input,
@@ -152,7 +100,59 @@ input {
 #label {
 	width: 70%;
 }
-.text {
-	font-size: var(--size-m);
-	margin: 0 0 var(--size-s);
+/* TODAY WEATHER Grid Section */
+.today {
+	grid-column: 2 / span 1;
+	grid-row: 1;
+	padding: var(--size-s);
+	background-color: #80d8ff78;
+	box-shadow: 1px 2px 3px #208662;
+}
+	/* JavaScript Generated Classes */
+.icon {
+	width: 80px;
+	height: 80px;
+	object-fit: contain;
+	margin: var(--size-s) 0;
+}
+.info {
+	font-size: var(--size-s);
+}
+/* STORAGE Grid Section */
+.storage {
+	grid-column: 1 / span 1;
+	grid-row: 2;
+}
+/* FORECAST Grid Section */
+.forecast {
+	grid-column: 2 / span 1;
+	grid-row: 2;
+}
+	/* CARDS Grid */
+.cards {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: 2fr;
+}
+	/* JavaScript Generated Classes */
+.card {
+	padding: var(--size-xs);
+	margin: var(--size-xs);
+	box-shadow: 1px 2px 3px #208662;
+	background-color: #80d8ff78;
+}
+.card-title {
+	font-size: var(--size-s);
+}
+.card-icon {
+	width: 60px;
+	height: 60px;
+	object-fit: contain;
+	margin: var(--size-s) 0;
+}
+.card-body {
+	font-size: var(--size-xs);
+}
+.wind {
+	margin: var(--size-xs) 0;
 }

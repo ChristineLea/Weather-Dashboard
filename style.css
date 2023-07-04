@@ -2,10 +2,9 @@
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-    font-size: 10px;
+	font-size: 10px;
 }
 :root {
-
 	--dark: #1c0b19;
 	--blue: #140d4f;
 	--lightBlue: #4ea699;
@@ -15,142 +14,145 @@
 	--white: #faf9f6;
 	--whiter: rgb(235 230 190);
 
-    --size-xs: 1.4rem;
+	--size-xs: 1.4rem;
 	--size-s: 1.6rem;
-    --size-m: 2.4rem;
+	--size-m: 2.4rem;
 	--size-l: 3.2rem;
 	--size-xl: 4rem;
 }
-    /* background-color: #80d8ff cards & today*/
-        /* background-color: #80d8ffa8; */
-    /* #01579b; grid-container  */
-        /* box-shadow: 3px 3px 1px black cards */
+/* background-color: #80d8ff cards & today*/
+/* background-color: #80d8ffa8; */
+/* #01579b; grid-container  */
+/* box-shadow: 3px 3px 1px black cards */
 body {
-  
-    font-family: Arial, Helvetica, sans-serif;
-    color: var(--dark);
+	font-family: Arial, Helvetica, sans-serif;
+	color: var(--dark);
 	background-color: var(--white);
 }
 .pd-xs {
-    padding: var(--size-xs);
+	padding: var(--size-xs);
 }
 /* header */
 .header {
-    background-color: var(--lightBlue);
+	background-color: var(--lightBlue);
 }
 h1 {
-    font-size: var(--size-xl);
-    padding: var(--size-l);
-    font-weight: normal;
-    text-align: center;
+	font-size: var(--size-xl);
+	padding: var(--size-l);
+	font-weight: normal;
+	text-align: center;
 }
 h2 {
-    font-size: var(--size-l);
+	font-size: var(--size-l);
 }
 h3 {
-    font-size: var(--size-m);
-    /* margin: var(--size-xs) 0; */
-    font-weight: normal;
+	font-size: var(--size-m);
+	/* margin: var(--size-xs) 0; */
+	font-weight: normal;
 }
 /* MAIN full width */
-
+.container {
+	background-color: #80d8ffa8;
+}
 /* GRID margin 0 auto */
 .grid-container {
-    margin: 0 auto;
-    padding: var(--size-xs);
-    border: 1px solid black;
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: 1fr 1fr;
-
-    grid-gap: var(--size-xs);
-
+	margin: 0 auto;
+	padding: var(--size-s);
+	border: 1px solid black;
+	display: grid;
+	grid-template-columns: 1fr 3fr;
+	grid-template-rows: 1fr 1fr;
+	align-items: center;
+	grid-gap: var(--size-xs);
 }
 
 .search {
-     grid-column: 1 / span 1;
-    grid-row: 1;
-    align-self: start;
+	grid-column: 1 / span 1;
+	grid-row: 1;
+	align-self: start;
 }
 /* TODAY WEATHER */
 .today {
-    grid-column: 2 / span 1;
-    grid-row: 1;
-    padding: var(--size-s);
+	grid-column: 2 / span 1;
+	grid-row: 1;
+	padding: var(--size-s);
+	background-color: #80d8ff78;
+	/* border: 3px solid #80d8ff; */
+	box-shadow: 1px 2px 3px #208662;
 }
 
 .icon {
-    width: 80px;
-    height: 80px;
-    object-fit: contain;
-        margin: var(--size-s) 0;
+	width: 80px;
+	height: 80px;
+	object-fit: contain;
+	margin: var(--size-s) 0;
 }
 .info {
-    font-size: var(--size-s);
+	font-size: var(--size-s);
 }
 /* CARD */
 .form {
-         display: flex;
-    /* flex-direction: column; */
-    flex-wrap: wrap;
+	display: flex;
+	/* flex-direction: column; */
+	flex-wrap: wrap;
 }
 .forecast {
-    grid-column: 2 / span 1;
-    grid-row: 2;
+	grid-column: 2 / span 1;
+	grid-row: 2;
 }
 
 .cards {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: 2fr;
-    
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-template-rows: 2fr;
 }
 .card {
-    padding: var(--size-xs);
-    margin: var(--size-xs);
-    border: 1px solid black;
-        box-shadow: 1px 2px 3px #208662;
+	padding: var(--size-xs);
+	margin: var(--size-xs);
+
+	box-shadow: 1px 2px 3px #208662;
+	background-color: #80d8ff78;
 }
 .storage {
-    grid-column: 1 / span 1;
-    grid-row: 2;
+	grid-column: 1 / span 1;
+	grid-row: 2;
 }
 
 /* h3 */
 .card-title {
-    font-size: var(--size-s);
+	font-size: var(--size-s);
 }
 .card-icon {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    margin: var(--size-s) 0;
+	width: 60px;
+	height: 60px;
+	object-fit: contain;
+	margin: var(--size-s) 0;
 }
 .card-body {
-    font-size: var(--size-xs);
+	font-size: var(--size-xs);
 }
 .wind {
-    margin: var(--size-xs) 0;
+	margin: var(--size-xs) 0;
 }
 label,
 input,
 button {
-    font-size: var(--size-s);
+	font-size: var(--size-s);
 }
 input {
-    padding: 0.5rem;
-    margin: 0.5rem 0;
+	padding: 0.5rem;
+	margin: 0.5rem 0;
 }
 #city {
-    max-width: 70%;
+	max-width: 70%;
 }
 #country {
-    max-width: 30%;
+	max-width: 30%;
 }
 #label {
-    width: 70%;
+	width: 70%;
 }
 .text {
-    font-size: var(--size-m);
-    margin: 0 0 var(--size-s);
+	font-size: var(--size-m);
+	margin: 0 0 var(--size-s);
 }

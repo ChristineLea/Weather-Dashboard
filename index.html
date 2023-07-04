@@ -22,13 +22,13 @@
            
             <div class="search pd-xs">
                 <p class="text">Change Location</p>
-                <form action="GET" class="form">
+                <form action="#" class="form">
                     
                     <label for="city" id="label">City</label>
                     <label for="country">Country</label>
-                    <input type="text" id="city" placeholder="melbourne">
-                    <input type="text" id="country" placeholder="au">
-                    <button id="search">Forecast</button>
+                    <input type="text" name="city" id="city" placeholder="melbourne" required>
+                    <input type="text" id="country" name="country" placeholder="au" minlength="2" maxlength="2" required>
+                    <button class="form-btn" id="search">Forecast</button>
                 </form>
             </div>
             

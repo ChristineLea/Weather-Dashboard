@@ -1,16 +1,47 @@
 // test fetch & API
 let obj;
-
+const searchBtn = $("#search");
 // Add geolocating API
 // http://api.openweathermap.org/geo/1.0/direct?q={city name},{country code}&limit={limit}&appid={API key}
 
-function getLatLon(location) {
-	// location === city,au
+function getLatLon(city, country) {
+	let cityName = city;
+	let countryCode = country;
+
+	const apiKey = "7efeea0385eeddc77479b9ad9143d71b";
+	let locationUrl =
+		"http://api.openweathermap.org/geo/1.0/direct?q=" +
+		cityName +
+		"," +
+		countryCode +
+		"&limit=1&appid=" +
+		apiKey;
+
+	fetch(locationUrl)
+		.then(function (response) {
+			return response.json();
+		})
+		.then(function (data) {
+			console.log(data);
+			let lat = data[0].lat.toFixed(2);
+			let lon = data[0].lon.toFixed(2);
+			getWeatherApi(lat, lon);
+		});
 }
 
-function getWeatherApi() {
+function getWeatherApi(lat, lon) {
+	const key = "7efeea0385eeddc77479b9ad9143d71b";
+	let latitude = lat;
+	let longitude = lon;
 	let requestUrl =
-		"https://api.openweathermap.org/data/2.5/forecast?lat=-37.81&lon=144.96&units=metric&appid=7efeea0385eeddc77479b9ad9143d71b";
+		"https://api.openweathermap.org/data/2.5/forecast?lat=" +
+		latitude +
+		"&lon=" +
+		longitude +
+		"&units=metric&appid=" +
+		key;
+	// let requestUrl =
+	// 	"https://api.openweathermap.org/data/2.5/forecast?lat=-37.81&lon=144.96&units=metric&appid=7efeea0385eeddc77479b9ad9143d71b";
 
 	fetch(requestUrl)
 		.then(function (response) {
@@ -18,7 +49,6 @@ function getWeatherApi() {
 		})
 		.then(function (data) {
 			for (let i = 7; i <= 40; i += 8) {
-				
 				// cycle through cards
 				let dataList = data.list[i];
 				populate(dataList);
@@ -48,7 +78,9 @@ function populate(list) {
 		)
 		.addClass("card-icon");
 	let tempEl = $("<p>").addClass("card-body").text(`Temp: ${tempData} °C`);
-	let windEl = $("<p>").addClass("card-body wind").text(`Wind: ${windData} MPH`);
+	let windEl = $("<p>")
+		.addClass("card-body wind")
+		.text(`Wind: ${windData} MPH`);
 	let humidityEl = $("<p>")
 		.addClass("card-body")
 		.text(`Humidity: ${humidityData} %`);
@@ -72,11 +104,12 @@ function populateToday(id, d) {
 
 	let locationEl = $("<h2>").text(locationData);
 	let dateEl = $("<h3>").text(date);
-	let iconEl = $("<img>").addClass("icon")
+	let iconEl = $("<img>")
+		.addClass("icon")
 		.attr(
 			"src",
 			"https://openweathermap.org/img/wn/" + iconData + "@2x.png"
-		)
+		);
 
 	let tempEl = $("<p>").addClass("info").text(`Temp: ${tempData} °C`);
 	let windEl = $("<p>").addClass("info wind").text(`Wind: ${windData} MPH`);
@@ -87,3 +120,12 @@ function populateToday(id, d) {
 	let todayEl = $(".today");
 	todayEl.append(locationEl, dateEl, iconEl, tempEl, windEl, humidityEl);
 }
+
+$(".form").on("click", ".form-btn", function (e) {
+	e.preventDefault()
+	let cityId = $(this).parent().children().eq(2).val();
+	let countryId = $(this).prev().val();
+	
+	$(":input", ".form").val("");
+	getLatLon(cityId, countryId);
+});

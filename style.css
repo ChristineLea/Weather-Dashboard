@@ -45,6 +45,10 @@ h2 {
     font-size: var(--size-l);
     padding: var(--size-s);
 }
+h3 {
+    font-size: var(--size-m);
+    margin: var(--size-s) 0;
+}
 /* MAIN full width */
 
 /* GRID margin 0 auto */
@@ -68,12 +72,7 @@ h2 {
     grid-row: 1;
     padding: var(--size-s);
 }
-.location {
-    font-size: var(--size-l);
-}
-.date {
-    font-size: var(--size-m);
-}
+
 .icon {
     width: 100px;
     height: 100px;
@@ -115,8 +114,6 @@ h2 {
     height: 60px;
     object-fit: contain;
 }
-.temp, 
-.wind,
-.humidity {
+.card-body {
     font-size: var(--size-xs);
 }

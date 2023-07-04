@@ -33,20 +33,20 @@ function populate(list) {
 	let dateFormat = new Date(dateData * 1000).toLocaleString();
 	let date = dayjs(dateFormat).format("dddd, DD MMM");
 
-	let dateEl = $("<h3>").addClass("card-title").text(date);
+	let dateEl = $("<h4>").addClass("card-title").text(date);
 	let iconEl = $("<img>")
 		.attr(
 			"src",
 			"https://openweathermap.org/img/wn/" + iconData + "@2x.png"
 		)
 		.addClass("card-icon");
-	let tempEl = $("<p>").addClass("temp pd-xs").text(`Temp: ${tempData} °C`);
-	let windEl = $("<p>").addClass("wind pd-xs").text(`Wind: ${windData} MPH`);
+	let tempEl = $("<p>").addClass("card-body").text(`Temp: ${tempData} °C`);
+	let windEl = $("<p>").addClass("card-body").text(`Wind: ${windData} MPH`);
 	let humidityEl = $("<p>")
-		.addClass("humidity pd-xs")
+		.addClass("card-body")
 		.text(`Humidity: ${humidityData} %`);
 
-	let cardEl = $("<div>").addClass("card");
+	let cardEl = $("<div>").addClass("card pd-xs");
 	let cardsGrid = $(".cards");
 	cardEl.append(dateEl, iconEl, tempEl, windEl, humidityEl);
 	cardsGrid.append(cardEl);
@@ -63,8 +63,8 @@ function populateToday(id, d) {
 	let dateFormat = new Date(dateData * 1000).toLocaleString();
 	let date = dayjs(dateFormat).format("dddd, DD MMM");
 
-	let locationEl = $("<h2>").addClass("location").text(locationData);
-	let dateEl = $("<h3>").addClass("date").text(date);
+	let locationEl = $("<h2>").text(locationData);
+	let dateEl = $("<h3>").text(date);
 	let iconEl = $("<img>").addClass("icon")
 		.attr(
 			"src",

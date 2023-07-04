@@ -39,10 +39,7 @@ h1 {
     text-align: center;
 }
 /* MAIN full width */
-.container {
-    width: 100vw;
-        margin: var(--size-l);
-}
+
 /* GRID margin 0 auto */
 .grid-container {
     margin: 0 auto;

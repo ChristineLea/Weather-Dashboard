@@ -14,17 +14,20 @@
 	--white: #faf9f6;
 	--whiter: rgb(235 230 190);
 
-    --size-xs: 0.8rem;
+    --size-xs: 0.75rem;
 	--size-s: 1rem;
-    --size-m: 1.5rem;
-	--size-l: 2rem;
-	--size-xl: 2.5rem;
+    --size-m: 1.3rem;
+	--size-l: 1.8rem;
+	--size-xl: 2.4rem;
 }
+    /* background-color: #80d8ff cards */
+    /* #01579b; grid-container  */
+        /* box-shadow: 3px 3px 1px black cards */
 body {
   
     font-family: Arial, Helvetica, sans-serif;
     color: var(--dark);
-	background-color: var(--whiter);
+	background-color: var(--white);
 }
 .pd-xs {
     margin: var(--size-xs);
@@ -38,11 +41,16 @@ h1 {
     padding: var(--size-xl);
     text-align: center;
 }
+h2 {
+    font-size: var(--size-l);
+    padding: var(--size-s);
+}
 /* MAIN full width */
 
 /* GRID margin 0 auto */
 .grid-container {
     margin: 0 auto;
+    padding: var(--size-xs);
     border: 1px solid black;
     display: grid;
     grid-template-columns: 1fr 3fr;

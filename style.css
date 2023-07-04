@@ -48,18 +48,40 @@ h1 {
     border: 1px solid black;
     display: grid;
     grid-template-columns: 1fr 3fr;
-    grid-template-rows: 3fr 2fr;
+    grid-template-rows: 3fr 3fr;
     grid-gap: var(--size-xs);
 }
+
+.search {
+     grid-column: 1 / span 1;
+    grid-row: 1;
+}
+
+.today {
+    grid-column: 2 / span 1;
+    grid-row: 1;
+}
+
 /* CARD */
+
 .forecast {
     grid-column: 2 / span 1;
     grid-row: 2;
 }
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: 2fr;
+}
 .card {
-    max-width: 20%;
     padding: var(--size-xs);
     margin: var(--size-xs);
+    border: 1px solid black;
+}
+.storage {
+    grid-column: 1 / span 1;
+    grid-row: 2;
 }
 
 /* h3 */

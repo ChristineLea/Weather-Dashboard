@@ -4,16 +4,33 @@ const searchBtn = $("#search");
 // Add geolocating API
 // http://api.openweathermap.org/geo/1.0/direct?q={city name},{country code}&limit={limit}&appid={API key}
 
+// LOCAL STORAGE
+// Save Lat, Lon & City, Country to an object
+// display as LI
+// for each search save to an object
+
+// OR create a method in an object
+let searchHistory = [];
+function setLocalStorage(city, country) {
+	// add new key value pairs for each result
+
+	let addHistory = [`${city}, ${country}`];
+
+	searchHistory.push(addHistory);
+	console.log(searchHistory);
+
+	localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
+}
+
 function getLatLon(city, country) {
-	let cityName = city;
-	let countryCode = country;
+	setLocalStorage(city, country);
 
 	const apiKey = "7efeea0385eeddc77479b9ad9143d71b";
 	let locationUrl =
 		"http://api.openweathermap.org/geo/1.0/direct?q=" +
-		cityName +
+		city +
 		"," +
-		countryCode +
+		country +
 		"&limit=1&appid=" +
 		apiKey;
 
@@ -119,11 +136,13 @@ function populateToday(id, d) {
 	todayEl.append(locationEl, dateEl, iconEl, tempEl, windEl, humidityEl);
 }
 
+// CLEAR weather data shown
 $(".form").on("click", ".form-btn", function (e) {
-	e.preventDefault()
+	e.preventDefault();
 	let cityId = $(this).parent().children().eq(2).val();
+	console.log(cityId);
 	let countryId = $(this).prev().val();
-	
+
 	$(":input", ".form").val("");
 	getLatLon(cityId, countryId);
 });

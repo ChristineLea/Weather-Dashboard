@@ -1,24 +1,15 @@
-// test fetch & API
-let obj;
 const searchBtn = $("#search");
-// Add geolocating API
-// http://api.openweathermap.org/geo/1.0/direct?q={city name},{country code}&limit={limit}&appid={API key}
 
-// LOCAL STORAGE
-// Save Lat, Lon & City, Country to an object
-// display as LI
-// for each search save to an object
-
-// OR create a method in an object
 let searchHistory = [];
 function setLocalStorage(city, country) {
 	// add new key value pairs for each result
 
-	let addHistory = [`${city}, ${country}`];
+	let addHistory = `${city}, ${country}`;
+	// let cityKey = city;
+	// let addHistory = [{ [cityKey]: `${city}, ${country}` }];
 
 	searchHistory.push(addHistory);
 	console.log(searchHistory);
-
 	localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 }
 

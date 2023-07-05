@@ -13,6 +13,20 @@ function setLocalStorage(city, country) {
 	localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 }
 
+function displaySearchHistory() {
+	let olEl = $("<ol>");
+
+	let history = JSON.parse(localStorage.getItem("searchHistory"));
+	if (history !== null) {
+		for (let i = 0; i < history.length; i++) {
+			let historyEl = $("<li>");
+			historyEl.text(history[i]).addClass("history-ol");
+			olEl.append(historyEl);
+			$(".history").append(olEl);
+		}
+	}
+}
+
 function getLatLon(city, country) {
 	setLocalStorage(city, country);
 

@@ -162,3 +162,15 @@ input {
 .wind {
 	margin: var(--size-xs) 0;
 }
+/* ADD a .history-ol class */
+.history-ol {
+	list-style-type: none;
+
+    font-size: var(--size-s);
+    text-transform: uppercase;
+    padding: 0.5rem;
+    border: 1px solid black;
+    text-align: center;
+    background-color: var(--color);
+    font-weight: bold;
+}

@@ -1,18 +1,18 @@
 const searchBtn = $("#search");
-
+const API_KEY = "7efeea0385eeddc77479b9ad9143d71b";
 let searchHistory = [];
+
+// GET STORAGE WILL NOT HAVE TO USE LONG AND LAT TO PULL DATA!
+// Takes params for city & country location to store in local storage
 function setLocalStorage(city, country) {
-	// add new key value pairs for each result
-
-	let addHistory = `${city}, ${country}`;
-	// let cityKey = city;
-	// let addHistory = [{ [cityKey]: `${city}, ${country}` }];
-
-	searchHistory.push(addHistory);
+	// Format the data for ease of getting data for this location in future
+	let addHistory = [`${city}, ${country}`];
+// CHANGE ARRAY METHOD FROM PUSH TO CONCAT AND ADDHISTORY TO AN ARRAY
+	searchHistory.concat(addHistory);
 	console.log(searchHistory);
 	localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
 }
-
+// NEED TO MAKE LOCAL STORAGE PERSIST!!
 function displaySearchHistory() {
 	let olEl = $("<ol>");
 
@@ -26,19 +26,21 @@ function displaySearchHistory() {
 		}
 	}
 }
-
+// Uses the geolocation API to convert the city, country to lat, lon
 function getLatLon(city, country) {
+	// Set local as a named value rather than lat & lon
 	setLocalStorage(city, country);
 
-	const apiKey = "7efeea0385eeddc77479b9ad9143d71b";
+	// GET lat lon
 	let locationUrl =
 		"http://api.openweathermap.org/geo/1.0/direct?q=" +
 		city +
 		"," +
 		country +
 		"&limit=1&appid=" +
-		apiKey;
+		API_KEY;
 
+	// Set integer to a two decimal format to meet requirements of weather API
 	fetch(locationUrl)
 		.then(function (response) {
 			return response.json();
@@ -51,8 +53,9 @@ function getLatLon(city, country) {
 		});
 }
 
+// GET weather from lat & lon
 function getWeatherApi(lat, lon) {
-	const key = "7efeea0385eeddc77479b9ad9143d71b";
+
 	let latitude = lat;
 	let longitude = lon;
 	let requestUrl =
@@ -61,7 +64,7 @@ function getWeatherApi(lat, lon) {
 		"&lon=" +
 		longitude +
 		"&units=metric&appid=" +
-		key;
+		API_KEY;
 
 	fetch(requestUrl)
 		.then(function (response) {
@@ -69,10 +72,11 @@ function getWeatherApi(lat, lon) {
 		})
 		.then(function (data) {
 			for (let i = 7; i <= 40; i += 8) {
-				// cycle through cards
+				// cycle through get request to access the relevant data for 5 day forecast
 				let dataList = data.list[i];
 				populate(dataList);
 			}
+			// Cycle data for location & todays weather
 			let requestLocation = data.city.name;
 			console.log(requestLocation);
 			let todayData = data.list[0];
@@ -80,6 +84,7 @@ function getWeatherApi(lat, lon) {
 		});
 }
 
+// Uses weather data to populate 5 day forecast
 function populate(list) {
 	let dateData = list.dt;
 	let iconData = list.weather[0].icon;
@@ -87,9 +92,11 @@ function populate(list) {
 	let windData = list.wind.speed;
 	let humidityData = list.main.humidity;
 
+	// format the date to display
 	let dateFormat = new Date(dateData * 1000).toLocaleString();
 	let date = dayjs(dateFormat).format("ddd, DD MMM");
 
+	// Populate data by creating and appending elements in HTML
 	let dateEl = $("<h4>").addClass("card-title").text(date);
 	let iconEl = $("<img>")
 		.attr(
@@ -111,6 +118,7 @@ function populate(list) {
 	cardsGrid.append(cardEl);
 }
 
+// Populate todays weather
 function populateToday(id, d) {
 	let locationData = id;
 	let dateData = d.dt;
@@ -122,6 +130,7 @@ function populateToday(id, d) {
 	let dateFormat = new Date(dateData * 1000).toLocaleString();
 	let date = dayjs(dateFormat).format("dddd, DD MMM");
 
+	// Create and append HTML elements for today weather
 	let locationEl = $("<h2>").text(locationData);
 	let dateEl = $("<h3>").text(date);
 	let iconEl = $("<img>")
@@ -144,10 +153,13 @@ function populateToday(id, d) {
 // CLEAR weather data shown
 $(".form").on("click", ".form-btn", function (e) {
 	e.preventDefault();
+
+	// DOM traversal to access the value from city / country input
 	let cityId = $(this).parent().children().eq(2).val();
 	console.log(cityId);
 	let countryId = $(this).prev().val();
 
+	// CLEAR input fields
 	$(":input", ".form").val("");
 	getLatLon(cityId, countryId);
 });

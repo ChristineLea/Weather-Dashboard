@@ -2,7 +2,8 @@ const searchBtn = $("#search");
 const API_KEY = "7efeea0385eeddc77479b9ad9143d71b";
 const $storageList = $("#storage-list");
 let storage = [];
-
+	let todayEl = $(".today");
+	let cardsGrid = $(".cards");
 function renderStorageList() {
 	$storageList.html("");
 	for (let i = 0; i < storage.length; i++) {
@@ -84,6 +85,7 @@ function getWeatherApi(lat, lon) {
 
 // Uses weather data to populate 5 day forecast
 function populate(list) {
+	cardsGrid.text("");
 	let dateData = list.dt;
 	let iconData = list.weather[0].icon;
 	let tempData = list.main.temp;
@@ -111,13 +113,14 @@ function populate(list) {
 		.text(`Humidity: ${humidityData} %`);
 
 	let cardEl = $("<div>").addClass("card");
-	let cardsGrid = $(".cards");
+	// let cardsGrid = $(".cards");
 	cardEl.append(dateEl, iconEl, tempEl, windEl, humidityEl);
 	cardsGrid.append(cardEl);
 }
 
 // Populate todays weather
 function populateToday(id, d) {
+	todayEl.text("");
 	let locationData = id;
 	let dateData = d.dt;
 	let iconData = d.weather[0].icon;
@@ -144,7 +147,7 @@ function populateToday(id, d) {
 		.addClass("info")
 		.text(`Humidity: ${humidityData} %`);
 	dateEl.append(locationEl);
-	let todayEl = $(".today");
+	// let todayEl = $(".today");
 	todayEl.append(dateEl, iconEl, tempEl, windEl, humidityEl);
 }
 

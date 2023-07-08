@@ -1,35 +1,34 @@
 const searchBtn = $("#search");
 const API_KEY = "7efeea0385eeddc77479b9ad9143d71b";
-let searchHistory = [];
+const $storageList = $("#storage-list");
+let storage = [];
 
-// GET STORAGE WILL NOT HAVE TO USE LONG AND LAT TO PULL DATA!
-// Takes params for city & country location to store in local storage
-function setLocalStorage(city, country) {
-	// Format the data for ease of getting data for this location in future
-	let addHistory = [`${city}, ${country}`];
-// CHANGE ARRAY METHOD FROM PUSH TO CONCAT AND ADDHISTORY TO AN ARRAY
-	searchHistory.concat(addHistory);
-	console.log(searchHistory);
-	localStorage.setItem("searchHistory", JSON.stringify(searchHistory));
-}
-// NEED TO MAKE LOCAL STORAGE PERSIST!!
-function displaySearchHistory() {
-	let olEl = $("<ol>");
-
-	let history = JSON.parse(localStorage.getItem("searchHistory"));
-	if (history !== null) {
-		for (let i = 0; i < history.length; i++) {
-			let historyEl = $("<li>");
-			historyEl.text(history[i]).addClass("history-ol");
-			olEl.append(historyEl);
-			$(".history").append(olEl);
-		}
+function renderStorageList() {
+	$storageList.html("");
+	for (let i = 0; i < storage.length; i++) {
+		let search = storage[i];
+		let li = $("<li>");
+		li.text(search).addClass("li");
+		$storageList.append(li);
 	}
 }
+
+function init() {
+	let history = JSON.parse(localStorage.getItem("storage"));
+	if (history !== null) {
+		storage = history;
+	}
+
+	renderStorageList();
+}
+
+function setLocalStorage() {
+	localStorage.setItem("storage", JSON.stringify(storage));
+	renderStorageList();
+}
+
 // Uses the geolocation API to convert the city, country to lat, lon
 function getLatLon(city, country) {
-	// Set local as a named value rather than lat & lon
-	setLocalStorage(city, country);
 
 	// GET lat lon
 	let locationUrl =
@@ -55,7 +54,6 @@ function getLatLon(city, country) {
 
 // GET weather from lat & lon
 function getWeatherApi(lat, lon) {
-
 	let latitude = lat;
 	let longitude = lon;
 	let requestUrl =
@@ -132,7 +130,7 @@ function populateToday(id, d) {
 
 	// Create and append HTML elements for today weather
 	let locationEl = $("<h2>").text(locationData);
-	let dateEl = $("<h3>").text(date);
+	let dateEl = $("<h3>").addClass("display").text(date);
 	let iconEl = $("<img>")
 		.addClass("icon")
 		.attr(
@@ -145,9 +143,9 @@ function populateToday(id, d) {
 	let humidityEl = $("<p>")
 		.addClass("info")
 		.text(`Humidity: ${humidityData} %`);
-
+	dateEl.append(locationEl);
 	let todayEl = $(".today");
-	todayEl.append(locationEl, dateEl, iconEl, tempEl, windEl, humidityEl);
+	todayEl.append(dateEl, iconEl, tempEl, windEl, humidityEl);
 }
 
 // CLEAR weather data shown
@@ -155,11 +153,20 @@ $(".form").on("click", ".form-btn", function (e) {
 	e.preventDefault();
 
 	// DOM traversal to access the value from city / country input
-	let cityId = $(this).parent().children().eq(2).val();
-	console.log(cityId);
-	let countryId = $(this).prev().val();
+	let city = $(this).parent().children().eq(2).val();
+	let country = $(this).prev().val();
 
-	// CLEAR input fields
-	$(":input", ".form").val("");
-	getLatLon(cityId, countryId);
+	let addHistory = `${city}, ${country}`;
+
+	if (storage.includes(addHistory)) {
+		// CLEAR input fields
+		$(":input", ".form").val("");
+	} else {
+		storage.push(addHistory);
+		$(":input", ".form").val("");
+	}
+
+	setLocalStorage();
+	getLatLon(city, country);
 });
+init();

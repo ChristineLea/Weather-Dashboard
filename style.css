@@ -28,57 +28,99 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 	color: var(--dark);
 	background-color: var(--white);
+	display: flex;
+	flex-direction: column;
 }
-/* UNIVERSAL SIZING */
-.pd-xs {
-	padding: var(--size-xs);
-}
-/* FONT STYLES */
+/* UNIVERSAL STYLES */
 h1 {
 	font-size: var(--size-xl);
-	padding: var(--size-l);
-	font-weight: normal;
-	text-align: center;
 }
 h2 {
 	font-size: var(--size-l);
 }
 h3 {
 	font-size: var(--size-m);
-	/* margin: var(--size-xs) 0; */
-	font-weight: normal;
 }
-/* HEADER */
+h4 {
+	font-size: var(--size-s);
+}
+p,
+input,
+li,
+button,
+label {
+	font-size: var(--size-xs);
+}
 .header {
-	background-color: var(--lightBlue);
+	padding: var(--size-m);
+	background-color: #80d8ff;
+    width: 100%;
+    text-align: center;
 }
-/* MAIN */
 .container {
-	background-color: #80d8ffa8;
+	width: 100vw;
+	padding: var(--size-m) 0;
 }
 /* GRID CONTAINER */
 .grid-container {
-	margin: 0 auto;
-	padding: var(--size-s);
-	border: 1px solid black;
+	margin: 0 var(--size-xl);
 	display: grid;
-	grid-template-columns: 1fr 3fr;
-	grid-template-rows: 1fr 1fr;
-	align-items: center;
-	grid-gap: var(--size-xs);
+	grid-template-columns: repeat(12, 1fr);
+	grid-template-rows: 1.5fr 0.5fr 1fr;
 }
-/* SEARCH Grid Section */
+/* GRID ITEMS */
+.today {
+	grid-column: 7 / span 5;
+	grid-row: 1;
+}
 .search {
-	grid-column: 1 / span 1;
+	grid-column: 2 / span 3;
+	grid-row: 1;
+}
+.forecast {
+	grid-column: 7 / span 5;
+	grid-row: 3;
+}
+.storage {
+	grid-column: 2 / span 3;
+	grid-row: 3;
+}
+/* GRID-CONTAINER */
+.cards {
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+}
+
+/* ADD styles for #storage-list li - className li */
+
+
+
+/* GRID ITEMS */
+/* .search {
+	grid-column: 2 / span 1;
 	grid-row: 1 / span 2;
 	align-self: start;
 }
-.text {
+.today {
+	grid-column: 4 / span 1;
+	grid-row: 1;
+	padding: var(--size-s);
+	background-color: #80d8ff78;
+	box-shadow: 1px 2px 3px #208662;
+} */
+/* FORECAST Grid Section */
+/* .forecast {
+	grid-column: 3 / span 3;
+	grid-row: 2;
+} */
+/* SEARCH Grid Section */
+
+/* .text {
 	font-size: var(--size-m);
 	margin: 0 0 var(--size-s);
-}
-	/* SEARCH : FORM */
-.form {
+} */
+/* SEARCH : FORM */
+/* .form {
 	display: flex;
 	flex-wrap: wrap;
 }
@@ -108,47 +150,43 @@ input {
 }
 #search:hover {
 	box-shadow: inset 1px 1px var(--blue);
-}
-	/* HISTORY Grid Section */
-.history {
+} */
+/* HISTORY Grid Section */
+/* .history {
 	margin: var(--size-l) 0 0;
-}
+} */
 /* TODAY WEATHER Grid Section */
-.today {
-	grid-column: 2 / span 1;
-	grid-row: 1;
-	padding: var(--size-s);
-	background-color: #80d8ff78;
-	box-shadow: 1px 2px 3px #208662;
-}
-	/* JavaScript Generated Classes */
-.icon {
+/* .display {
+	    display: flex;
+    justify-content: space-between;
+} */
+/* JavaScript Generated Classes */
+/* .icon {
 	width: 80px;
 	height: 80px;
 	object-fit: contain;
-	margin: var(--size-s) 0;
 }
 .info {
 	font-size: var(--size-s);
 }
+ */
 
-/* FORECAST Grid Section */
-.forecast {
-	grid-column: 2 / span 1;
-	grid-row: 2;
-}
-	/* CARDS Grid */
-.cards {
+/* CARDS Grid */
+/* .cards {
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
 	grid-template-rows: 2fr;
-}
-	/* JavaScript Generated Classes */
-.card {
+} */
+/* JavaScript Generated Classes */
+/* .card {
 	padding: var(--size-xs);
 	margin: var(--size-xs);
 	box-shadow: 1px 2px 3px #208662;
 	background-color: #80d8ff78;
+	    display: flex;
+    flex-direction: column;
+    align-items: center;
+
 }
 .card-title {
 	font-size: var(--size-s);
@@ -161,19 +199,25 @@ input {
 }
 .card-body {
 	font-size: var(--size-xs);
+	display: grid;
+	grid-template-columns: 1fr 0.5fr;
+	grid-template-rows: ;
 }
 .wind {
 	margin: var(--size-xs) 0;
 }
 /* ADD a .history-ol class */
-.history-ol {
+/* .history-li {
 	list-style-type: none;
 
-    font-size: var(--size-s);
-    text-transform: uppercase;
-    padding: 0.5rem;
-    border: 1px solid black;
-    text-align: center;
-    background-color: var(--color);
-    font-weight: bold;
-}
+	font-size: var(--size-s);
+	text-transform: uppercase;
+	padding: 0.5rem;
+	border: 1px solid black;
+	text-align: center;
+	background-color: var(--color);
+	font-weight: bold;
+	margin: 1rem 0;
+	display: flex;
+	justify-content: center;
+} */

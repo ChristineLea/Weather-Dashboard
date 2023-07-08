@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
         integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
-   <link rel="stylesheet" href="style.css">
-        <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <title>Weather Dashboard</title>
 </head>
+
 <body>
     <!-- HEADER -->
     <header class="header">
@@ -19,51 +20,57 @@
     <main class="container">
         <!-- GRID CONTAINER -->
         <div class="grid-container">
-            <!-- SEARCH Grid Section -->
+            <!-- TODAY WEATHER Grid Section -->
+            <div class="today pd-xs">
+                <h2>today</h2>
+                <!-- JavaScript will populate data -->
+                <!-- Location <h2> Date <h3> .icon <img> -->
+                <!-- .info class <p> -->
+            </div>
+            <!-- FORECAST Grid Section -->
+            <div class="forecast pd-xs">
+                <!-- CARDS GRID -->
+                <div class="cards">
+                    <h3>one</h3>
+                    <h3>one</h3>
+                    <h3>one</h3>
+                    <h3>one</h3>
+                    <h3>one</h3>
+                    <!-- JavaScript will populate data -->
+                    <!-- CARD layout for each day -->
+                    <!-- <div> .card & .pd-xs class -->
+                    <!-- .card-title <h4> -->
+                    <!-- .icon-img <img> -->
+                    <!-- .card-body-->
+                </div>
+            </div>
+
+            <!-- SEARCH Grid Item -->
             <div class="search pd-xs">
-                <p class="text">Change Location</p>
+                <h4 class="text">Change Location</h4>
                 <!-- SEARCH : FORM -->
                 <form action="#" class="form">
                     <label for="city" id="label">City</label>
                     <label for="country">Country</label>
                     <input type="text" name="city" id="city" placeholder="melbourne" required>
-                    <input type="text" id="country" name="country" placeholder="au" minlength="2" maxlength="2" required>
+                    <input type="text" id="country" name="country" placeholder="au" minlength="2" maxlength="2"
+                        required>
                     <button class="form-btn" id="search">Forecast</button>
                 </form>
-                <!-- HISTORY Grid Section -->
-                <div class="history pd-xs">
-                
-                </div>
             </div>
-            
-            <!-- TODAY WEATHER Grid Section -->
-            <div class="today pd-xs">
-                <!-- JavaScript will populate data -->
-                <!-- Location <h2> Date <h3> .icon <img> -->
-                <!-- .info class <p> -->
+            <!-- STORAGE Grid Item -->
+            <div class="storage">
+                <!-- JavaScript will populate <li> / CSS style .li class -->
+                <ul id="storage-list"></ul>
             </div>
-            
-        
-           
-           
-            <!-- FORECAST Grid Section -->
-            <div class="forecast pd-xs">
-                <!-- CARDS GRID -->
-                <div class="cards">
-                    <!-- JavaScript will populate data -->
-                    <!-- CARD layout for each day -->
-                    <!-- <div> .card & .pd-xs class -->
-                        <!-- .card-title <h4> -->
-                        <!-- .icon-img <img> -->
-                        <!-- .card-body-->
-                </div>
-            </div>
+
+
         </div>
     </main>
 
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"
         integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
-    <script src="script.js"></script>    
+    <script src="script.js"></script>
 </body>
 
 </html>

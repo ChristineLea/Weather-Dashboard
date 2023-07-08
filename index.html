@@ -20,36 +20,23 @@
     <main class="container">
         <!-- GRID CONTAINER -->
         <div class="grid-container">
-            <!-- TODAY WEATHER Grid Section -->
-            <div class="today pd-xs">
-                <h2>today</h2>
+            <!-- GRID ITEM: Today Weather -->
+            <div class="today">
                 <!-- JavaScript will populate data -->
-                <!-- Location <h2> Date <h3> .icon <img> -->
-                <!-- .info class <p> -->
             </div>
-            <!-- FORECAST Grid Section -->
-            <div class="forecast pd-xs">
-                <!-- CARDS GRID -->
+            <!-- GRID ITEM: Forecast Section -->
+            <div class="forecast">
+                <!-- GRID CONTAINER: CARDS -->
                 <div class="cards">
-                    <h3>one</h3>
-                    <h3>one</h3>
-                    <h3>one</h3>
-                    <h3>one</h3>
-                    <h3>one</h3>
-                    .info class
                     <!-- JavaScript will populate data -->
-                    <!-- CARD layout for each day -->
-                    <!-- <div> .card & .pd-xs class -->
-                    <!-- .card-title <h4> -->
-                    <!-- .icon-img <img> -->
-                    <!-- .card-body-->
+                    <!-- .card class -->
                 </div>
             </div>
 
-            <!-- SEARCH Grid Item -->
+            <!-- GRID ITEM: Search Section -->
             <div class="search pd-xs">
                 <h4 class="text">Change Location</h4>
-                <!-- SEARCH : FORM -->
+                <!-- Search Form -->
                 <form action="#" class="form">
                     <label for="city" id="label">City</label>
                     <label for="country">Country</label>
@@ -58,15 +45,15 @@
                         required>
                     <button class="form-btn" id="search">Forecast</button>
                 </form>
-            </div>
-            <!-- STORAGE Grid Item -->
-            <div class="storage">
-                <!-- JavaScript will populate <li> / CSS style .li class -->
-                <ul id="storage-list"></ul>
-            </div>
+                <!-- Storage display of recent searches -->
+                <div class="storage">
+                    <!-- JavaScript will populate <li> / CSS style .li class -->
+                    <ul id="storage-list"></ul>
+                    </div>
+                </div>
 
 
-        </div>
+            </div>
     </main>
 
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"

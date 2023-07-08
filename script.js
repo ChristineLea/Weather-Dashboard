@@ -2,8 +2,8 @@ const searchBtn = $("#search");
 const API_KEY = "7efeea0385eeddc77479b9ad9143d71b";
 const $storageList = $("#storage-list");
 let storage = [];
-	let todayEl = $(".today");
-	let cardsGrid = $(".cards");
+let todayEl = $(".today");
+let cardsGrid = $(".cards");
 function renderStorageList() {
 	$storageList.html("");
 	for (let i = 0; i < storage.length; i++) {
@@ -30,7 +30,6 @@ function setLocalStorage() {
 
 // Uses the geolocation API to convert the city, country to lat, lon
 function getLatLon(city, country) {
-
 	// GET lat lon
 	let locationUrl =
 		"http://api.openweathermap.org/geo/1.0/direct?q=" +
@@ -85,7 +84,6 @@ function getWeatherApi(lat, lon) {
 
 // Uses weather data to populate 5 day forecast
 function populate(list) {
-	cardsGrid.text("");
 	let dateData = list.dt;
 	let iconData = list.weather[0].icon;
 	let tempData = list.main.temp;
@@ -97,21 +95,22 @@ function populate(list) {
 	let date = dayjs(dateFormat).format("ddd, DD MMM");
 
 	// Populate data by creating and appending elements in HTML
-	let dateEl = $("<h4>").addClass("card-title").text(date);
+	let dateEl = $("<h4>").text(date);
 	let iconEl = $("<img>")
 		.attr(
 			"src",
 			"https://openweathermap.org/img/wn/" + iconData + "@2x.png"
 		)
 		.addClass("card-icon");
-	let tempEl = $("<p>").addClass("card-body").text(`Temp: ${tempData} °C`);
-	let windEl = $("<p>")
-		.addClass("card-body wind")
-		.text(`Wind: ${windData} MPH`);
-	let humidityEl = $("<p>")
-		.addClass("card-body")
-		.text(`Humidity: ${humidityData} %`);
-
+	let tempEl = $("<p>").addClass("card-body flex").text("Temp:");
+	let tempSpan = $("<span>").text(`${tempData}°C`);
+	let windEl = $("<p>").addClass("card-body flex").text("Wind:");
+	let windSpan = $("<span>").text(`${windData} mpH`);
+	let humidityEl = $("<p>").addClass("card-body flex").text("Humidity:");
+	let humiditySpan = $("<span>").text(`${humidityData}%`);
+	tempEl.append(tempSpan);
+	windEl.append(windSpan);
+	humidityEl.append(humiditySpan);
 	let cardEl = $("<div>").addClass("card");
 	// let cardsGrid = $(".cards");
 	cardEl.append(dateEl, iconEl, tempEl, windEl, humidityEl);
@@ -120,7 +119,6 @@ function populate(list) {
 
 // Populate todays weather
 function populateToday(id, d) {
-	todayEl.text("");
 	let locationData = id;
 	let dateData = d.dt;
 	let iconData = d.weather[0].icon;
@@ -133,22 +131,27 @@ function populateToday(id, d) {
 
 	// Create and append HTML elements for today weather
 	let locationEl = $("<h2>").text(locationData);
-	let dateEl = $("<h3>").addClass("display").text(date);
+	let dateEl = $("<h3>").addClass("normal").text(date);
 	let iconEl = $("<img>")
-		.addClass("icon")
 		.attr(
 			"src",
 			"https://openweathermap.org/img/wn/" + iconData + "@2x.png"
 		);
 
-	let tempEl = $("<p>").addClass("info").text(`Temp: ${tempData} °C`);
-	let windEl = $("<p>").addClass("info wind").text(`Wind: ${windData} MPH`);
-	let humidityEl = $("<p>")
-		.addClass("info")
-		.text(`Humidity: ${humidityData} %`);
-	dateEl.append(locationEl);
+	let tempEl = $("<h4>").addClass("info").text("Temp:");
+	let tempSpan = $("<span>").text(`${tempData}°C`);
+
+	let windEl = $("<h4>").addClass("info").text("Wind:");
+	let windSpan = $("<span>").text(`${windData} mpH`);
+
+	let humidityEl = $("<h4>").addClass("info").text("Humidity:");
+	let humiditySpan = $("<span>").text(`${humidityData}%`);
+	humidityEl.append(humiditySpan);
+	tempEl.append(tempSpan);
+	windEl.append(windSpan);
+	// locationEl.append(dateEl);
 	// let todayEl = $(".today");
-	todayEl.append(dateEl, iconEl, tempEl, windEl, humidityEl);
+	todayEl.append(locationEl,dateEl, iconEl, tempEl, windEl, humidityEl);
 }
 
 // CLEAR weather data shown
@@ -158,7 +161,7 @@ $(".form").on("click", ".form-btn", function (e) {
 	// DOM traversal to access the value from city / country input
 	let city = $(this).parent().children().eq(2).val();
 	let country = $(this).prev().val();
-
+	getLatLon(city, country);
 	let addHistory = `${city}, ${country}`;
 
 	if (storage.includes(addHistory)) {
@@ -170,6 +173,5 @@ $(".form").on("click", ".form-btn", function (e) {
 	}
 
 	setLocalStorage();
-	getLatLon(city, country);
 });
 init();

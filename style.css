@@ -20,10 +20,8 @@
 	--size-l: 3.2rem;
 	--size-xl: 4rem;
 }
-/* background-color: #80d8ff cards & today*/
-/* background-color: #80d8ffa8; */
 /* #01579b; grid-container  */
-/* box-shadow: 3px 3px 1px black cards */
+/* BODY */
 body {
 	font-family: Arial, Helvetica, sans-serif;
 	color: var(--dark);
@@ -53,85 +51,108 @@ label {
 }
 .header {
 	padding: var(--size-m);
-	background-color: #80d8ff;
-    width: 100%;
-    text-align: center;
+	background-color: var(--lightBlue);
+	width: 100%;
+	text-align: center;
 }
 .container {
 	width: 100vw;
-	padding: var(--size-m) 0;
 }
 /* GRID CONTAINER */
 .grid-container {
 	margin: 0 var(--size-xl);
 	display: grid;
 	grid-template-columns: repeat(12, 1fr);
-	grid-template-rows: 1.5fr 0.5fr 1fr;
+	grid-template-rows: 1fr 0.5fr;
 }
 /* GRID ITEMS */
-.today {
-	grid-column: 7 / span 5;
+.today { 
+	grid-column: 6 / span 6;
 	grid-row: 1;
+	padding: 1rem;
+	background-color: #80d8ff78;
+	box-shadow: 1px 1px 2px 3px #2086623d;
+	margin: 5rem 0;
 }
 .search {
-	grid-column: 2 / span 3;
-	grid-row: 1;
+	grid-column: 2 / span 2;
+	grid-row: 1 / span 2;
+	padding: 1rem;
+	line-height: 3rem;
+	margin: 5rem 0 0;
+	background-color: var(--lightBlue);
 }
 .forecast {
-	grid-column: 7 / span 5;
-	grid-row: 3;
+	grid-column: 5 / span 8;
+	grid-row: 2;
+	margin: 1rem 0;
 }
-.storage {
-	grid-column: 2 / span 3;
-	grid-row: 3;
+
+/* TODAY Section - JavaScript Generated Classes */
+.normal {
+	font-weight: normal;
 }
-/* GRID-CONTAINER */
+.info {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin: 0 75% 0 auto;
+	line-height: 3rem;
+	color: var(--blue);
+	letter-spacing: 0.75px;
+	font-weight: normal;
+}
+span {
+	font-size: var(--size-s);
+}
+
+/* GRID-CONTAINER - Forecast Cards Section */
 .cards {
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
+	grid-gap: 2rem;
 }
-
-/* ADD styles for #storage-list li - className li */
-
-
-
-/* GRID ITEMS */
-/* .search {
-	grid-column: 2 / span 1;
-	grid-row: 1 / span 2;
-	align-self: start;
-}
-.today {
-	grid-column: 4 / span 1;
-	grid-row: 1;
-	padding: var(--size-s);
-	background-color: #80d8ff78;
+/* FORECAST Cards Section - JavaScript Generated Classes */
+.card {
+	padding: var(--size-xs);
 	box-shadow: 1px 2px 3px #208662;
-} */
-/* FORECAST Grid Section */
-/* .forecast {
-	grid-column: 3 / span 3;
-	grid-row: 2;
-} */
-/* SEARCH Grid Section */
+	background-color: #80d8ff78;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.card-icon {
+	width: 60px;
+	height: 60px;
+	object-fit: contain;
+}
+.card-body {
+	line-height: 3rem;
+	width: 100%;
+	color: var(--blue);
+	letter-spacing: 0.75px;
+}
+.card-body span {
+	font-size: var(--size-xs);
+}
+.flex {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
 
-/* .text {
-	font-size: var(--size-m);
-	margin: 0 0 var(--size-s);
-} */
-/* SEARCH : FORM */
-/* .form {
+/* SEARCH Section */
+.text {
+	text-align: center;
+	margin: 0 0 3rem;
+}
+/* Search Form Section */
+.form {
 	display: flex;
 	flex-wrap: wrap;
 }
-label,
-input,
-button {
-	font-size: var(--size-s);
-}
 input {
 	padding: 0.5rem;
-	margin: 0.5rem 0;
 }
 #city {
 	width: 70%;
@@ -146,78 +167,25 @@ input {
 	width: 100%;
 	padding: 0.5rem;
 	margin: 0.5rem 0;
-	box-shadow: 1px 1px var(--blue);
 }
-#search:hover {
-	box-shadow: inset 1px 1px var(--blue);
-} */
-/* HISTORY Grid Section */
-/* .history {
-	margin: var(--size-l) 0 0;
-} */
-/* TODAY WEATHER Grid Section */
-/* .display {
-	    display: flex;
-    justify-content: space-between;
-} */
-/* JavaScript Generated Classes */
-/* .icon {
-	width: 80px;
-	height: 80px;
-	object-fit: contain;
+/* Storage Section */
+.storage {
+	margin: 4rem 0;
 }
-.info {
-	font-size: var(--size-s);
-}
- */
-
-/* CARDS Grid */
-/* .cards {
-	display: grid;
-	grid-template-columns: repeat(5, 1fr);
-	grid-template-rows: 2fr;
-} */
-/* JavaScript Generated Classes */
-/* .card {
-	padding: var(--size-xs);
-	margin: var(--size-xs);
-	box-shadow: 1px 2px 3px #208662;
-	background-color: #80d8ff78;
-	    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-}
-.card-title {
-	font-size: var(--size-s);
-}
-.card-icon {
-	width: 60px;
-	height: 60px;
-	object-fit: contain;
-	margin: var(--size-s) 0;
-}
-.card-body {
-	font-size: var(--size-xs);
-	display: grid;
-	grid-template-columns: 1fr 0.5fr;
-	grid-template-rows: ;
-}
-.wind {
-	margin: var(--size-xs) 0;
-}
-/* ADD a .history-ol class */
-/* .history-li {
+/* Storage Section - JavaScript Generated Classes */
+.li {
 	list-style-type: none;
-
-	font-size: var(--size-s);
+	font-size: var(--size-xs);
 	text-transform: uppercase;
 	padding: 0.5rem;
-	border: 1px solid black;
 	text-align: center;
+	margin: 0 0 1rem 0;
 	background-color: var(--color);
-	font-weight: bold;
-	margin: 1rem 0;
-	display: flex;
-	justify-content: center;
-} */
+}
+
+
+
+
+
+
+

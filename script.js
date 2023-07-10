@@ -3,7 +3,6 @@ const API_KEY = "7efeea0385eeddc77479b9ad9143d71b";
 const $storageList = $("#storage-list");
 let storage = [];
 
-let cardsGrid = $(".cards");
 function renderStorageList() {
 	$storageList.html("");
 	for (let i = 0; i < storage.length; i++) {
@@ -92,53 +91,60 @@ function getWeatherApi(lat, lon) {
 
 // Uses weather data to populate 5 day forecast
 function populate(list) {
-	let dateData = list.dt;
-	let iconData = list.weather[0].icon;
-	let tempData = list.main.temp;
-	let windData = list.wind.speed;
-	let humidityData = list.main.humidity;
-
 	// format the date to display
-	let dateFormat = new Date(dateData * 1000).toLocaleString();
-	let date = dayjs(dateFormat).format("ddd, DD MMM");
+	let dateFormat = new Date(list.dt * 1000).toLocaleString();
 
-	// Populate data by creating and appending elements in HTML
-	let dateEl = $("<h4>").text(date);
+	// CREATE element & POPULATE Data by accessing the list obj passed in as param
+	let dateEl = $("<h4>").text(dayjs(dateFormat).format("ddd, DD MMM"));
 	let iconEl = $("<img>")
 		.attr(
 			"src",
-			"https://openweathermap.org/img/wn/" + iconData + "@2x.png"
+			"https://openweathermap.org/img/wn/" +
+				list.weather[0].icon +
+				"@2x.png"
 		)
 		.addClass("card-icon");
-	let tempEl = $("<p>").addClass("card-body flex").text("Temp:");
-	let tempSpan = $("<span>").text(`${tempData}°C`);
-	let windEl = $("<p>").addClass("card-body flex").text("Wind:");
-	let windSpan = $("<span>").text(`${windData} mpH`);
-	let humidityEl = $("<p>").addClass("card-body flex").text("Humidity:");
-	let humiditySpan = $("<span>").text(`${humidityData}%`);
-	tempEl.append(tempSpan);
-	windEl.append(windSpan);
-	humidityEl.append(humiditySpan);
-	let cardEl = $("<div>").addClass("card");
-	// let cardsGrid = $(".cards");
-	cardEl.append(dateEl, iconEl, tempEl, windEl, humidityEl);
-	cardsGrid.append(cardEl);
+	// CREATE element & CREATE span to add space between the data
+	let tempEl = $("<p>")
+		.addClass("card-body flex")
+		.text("Temp:")
+		.append($("<span>").text(`${list.main.temp}°C`));
+
+	let windEl = $("<p>")
+		.addClass("card-body flex")
+		.text("Wind:")
+		.append($("<span>").text(`${list.wind.speed} mpH`));
+
+	let humidityEl = $("<p>")
+		.addClass("card-body flex")
+		.text("Humidity:")
+		.append($("<span>").text(`${list.main.humidity}%`));
+
+	// CREATE card and APPEND to .cards grid section
+	let cardEl = $("<div>")
+		.addClass("card")
+		.append(dateEl, iconEl, tempEl, windEl, humidityEl);
+
+	$(".cards").append(cardEl);
 }
 
-// Populate todays weather
+// Uses weather data to populate Today's weather
 function populateToday(id, d) {
+	// format the date to display
 	let dateFormat = new Date(d.dt * 1000).toLocaleString();
 
-	// Create and append HTML elements for today weather
+	// CREATE element & POPULATE Data by accessing the id (location) & data obj (d) passed in
 	let locationEl = $("<h2>").text(id);
 	let dateEl = $("<h3>")
 		.addClass("normal")
 		.text(dayjs(dateFormat).format("dddd, DD MMM"));
+
 	let iconEl = $("<img>").attr(
 		"src",
 		"https://openweathermap.org/img/wn/" + d.weather[0].icon + "@2x.png"
 	);
 
+	// CREATE element & CREATE span to add space between the data
 	let tempEl = $("<p>")
 		.addClass("info")
 		.text("Temp:")
@@ -154,6 +160,7 @@ function populateToday(id, d) {
 		.text("Humidity:")
 		.append($("<span>").text(`${d.main.humidity}%`));
 
+	// APPEND to .today grid section
 	$(".today").append(locationEl, dateEl, iconEl, tempEl, windEl, humidityEl);
 }
 

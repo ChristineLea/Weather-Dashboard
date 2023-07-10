@@ -8,11 +8,20 @@ function renderStorageList() {
 	$storageList.html("");
 	for (let i = 0; i < storage.length; i++) {
 		let search = storage[i];
-		let li = $("<li>");
-		li.text(search).addClass("li");
-		$storageList.append(li);
+		let locationEl = $(`<button>${search}</button>`);
+		locationEl.addClass("btn").attr("id", search);
+		// add attr of id of city name?
+		console.log(typeof search);
+		console.log(search);
+		$storageList.append(locationEl);
 	}
 }
+
+// on click ".btn" check for "id"
+// pass id to getLatLon to render weather
+
+
+// get storage to weather
 
 function init() {
 	let history = JSON.parse(localStorage.getItem("storage"));
@@ -175,3 +184,8 @@ $(".form").on("click", ".form-btn", function (e) {
 	setLocalStorage();
 });
 init();
+// TEST THAT LOCAL STORAGE WHEN CLICKED WILL OPEN WEATHER FOR THAT LOCATION
+$(".btn").on("click", function () {
+	let thisBtnId = $(this).attr("id");
+	getLatLon(thisBtnId);
+});

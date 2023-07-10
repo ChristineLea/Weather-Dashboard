@@ -2,7 +2,7 @@ const searchBtn = $("#search");
 const API_KEY = "7efeea0385eeddc77479b9ad9143d71b";
 const $storageList = $("#storage-list");
 let storage = [];
-let todayEl = $(".today");
+
 let cardsGrid = $(".cards");
 function renderStorageList() {
 	$storageList.html("");
@@ -19,7 +19,6 @@ function renderStorageList() {
 
 // on click ".btn" check for "id"
 // pass id to getLatLon to render weather
-
 
 // get storage to weather
 
@@ -128,39 +127,34 @@ function populate(list) {
 
 // Populate todays weather
 function populateToday(id, d) {
-	let locationData = id;
-	let dateData = d.dt;
-	let iconData = d.weather[0].icon;
-	let tempData = d.main.temp;
-	let windData = d.wind.speed;
-	let humidityData = d.main.humidity;
-
-	let dateFormat = new Date(dateData * 1000).toLocaleString();
-	let date = dayjs(dateFormat).format("dddd, DD MMM");
+	let dateFormat = new Date(d.dt * 1000).toLocaleString();
 
 	// Create and append HTML elements for today weather
-	let locationEl = $("<h2>").text(locationData);
-	let dateEl = $("<h3>").addClass("normal").text(date);
-	let iconEl = $("<img>")
-		.attr(
-			"src",
-			"https://openweathermap.org/img/wn/" + iconData + "@2x.png"
-		);
+	let locationEl = $("<h2>").text(id);
+	let dateEl = $("<h3>")
+		.addClass("normal")
+		.text(dayjs(dateFormat).format("dddd, DD MMM"));
+	let iconEl = $("<img>").attr(
+		"src",
+		"https://openweathermap.org/img/wn/" + d.weather[0].icon + "@2x.png"
+	);
 
-	let tempEl = $("<h4>").addClass("info").text("Temp:");
-	let tempSpan = $("<span>").text(`${tempData}°C`);
+	let tempEl = $("<p>")
+		.addClass("info")
+		.text("Temp:")
+		.append($("<span>").text(`${d.main.temp}°C`));
 
-	let windEl = $("<h4>").addClass("info").text("Wind:");
-	let windSpan = $("<span>").text(`${windData} mpH`);
+	let windEl = $("<p>")
+		.addClass("info")
+		.text("Wind:")
+		.append($("<span>").text(`${d.wind.speed} mpH`));
 
-	let humidityEl = $("<h4>").addClass("info").text("Humidity:");
-	let humiditySpan = $("<span>").text(`${humidityData}%`);
-	humidityEl.append(humiditySpan);
-	tempEl.append(tempSpan);
-	windEl.append(windSpan);
-	// locationEl.append(dateEl);
-	// let todayEl = $(".today");
-	todayEl.append(locationEl,dateEl, iconEl, tempEl, windEl, humidityEl);
+	let humidityEl = $("<p>")
+		.addClass("info")
+		.text("Humidity:")
+		.append($("<span>").text(`${d.main.humidity}%`));
+
+	$(".today").append(locationEl, dateEl, iconEl, tempEl, windEl, humidityEl);
 }
 
 // CLEAR weather data shown

@@ -24,7 +24,7 @@ N/A
 
 ## Usage 
 
-The deployed application can be viewed by visiting the [deployed application here]()
+The deployed application can be viewed by visiting the [deployed application here](https://christinelea.github.io/Weather-Dashboard/)
 
 This application can be run and used within a web browser. A user can input a location to search for the current and future weather. To pull accurate data for a location, a user must input both the name of the city, and the country code in the two labeled input fields. The country code must be in ISO 1366 format, which is an international standard to represent a given country. Users can search for a countries code by visiting the [ISO.org website](https://www.iso.org/iso-3166-country-codes.html)
 

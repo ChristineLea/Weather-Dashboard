@@ -1,5 +1,3 @@
-ADD validation from W3C
-
 # YOUR WEATHER DASHBOARD
 
 ## DESCRIPTION

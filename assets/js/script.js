@@ -65,7 +65,7 @@ function setLocalStorage() {
 // 7. Uses the geolocation API to convert the city, country to lat, lon format
 function getLatLon(city, country) {
 	let locationUrl =
-		"http://api.openweathermap.org/geo/1.0/direct?q=" +
+		"https://api.openweathermap.org/geo/1.0/direct?q=" +
 		city +
 		"," +
 		country +

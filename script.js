@@ -153,15 +153,18 @@ function populate(obj, card) {
 		);
 
 	$card
-		.children().eq(2).addClass("card-body flex")
+		.children()
+		.eq(2)
 		.text(`Temp:  ${obj.main.temp}°C`);
 
 	$card
-		.children().eq(3).addClass("card-body flex")
+		.children()
+		.eq(3)
 		.text(`Wind:  ${obj.wind.speed} mpH`);
 
 	$card
-		.children().eq(4).addClass("card-body flex")
+		.children()
+		.eq(4)
 		.text(`Humidity: ${obj.main.humidity}%`);
 }
 

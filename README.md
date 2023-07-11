@@ -17,7 +17,7 @@ This application uses
 ## Visuals
 
 The visual appearance of the application is shown below.
-![Application screenshot](screenshot.png)
+![Application screenshot](./assets/images/screenshot.png)
 
 ## Installation
 

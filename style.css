@@ -97,13 +97,7 @@ span {
 .normal {
 	font-weight: normal;
 }
-.info {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	margin: 0 75% 0 auto;
-	letter-spacing: 0.75px;
-}
+
 
 /* MAIN GRID ITEM TWO - FORECAST Cards Section */
 	/* Grid Container */
@@ -114,6 +108,21 @@ span {
 }
 /* Grid Items */ 
 		/* JavaScript Generated Elements */
+.card-zero {
+	grid-column: 1 / span 1;
+}
+.card-one {
+	grid-column: 2 / span 1;
+}
+.card-two {
+	grid-column: 3 / span 1;
+}
+.card-three {
+	grid-column: 4 / span 1;
+}
+.card-four {
+	grid-column: 5 / span 1;
+}
 .card {
 	padding: var(--size-xs);
 	background-color: var(--bright-blue);
@@ -132,11 +141,11 @@ span {
 	width: 100%;
 	letter-spacing: 0.75px;
 }
-.flex {
+/* .flex {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-}
+} */
 
 /* MAIN GRID ITEM THREE: SEARCH Section */
 .text {

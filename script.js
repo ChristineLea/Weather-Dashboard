@@ -14,6 +14,8 @@ function renderStorageList() {
 		console.log(search);
 		$storageList.append(locationEl);
 	}
+	// append emptyNodes
+	appendTodayNodes();
 }
 
 // on click ".btn" check for "id"
@@ -76,11 +78,12 @@ function getWeatherApi(lat, lon) {
 			return response.json();
 		})
 		.then(function (data) {
-			for (let i = 7; i <= 40; i += 8) {
-				// cycle through get request to access the relevant data for 5 day forecast
-				let dataList = data.list[i];
-				populate(dataList);
-			}
+			// for (let i = 7; i <= 40; i += 8) {
+			// 	// cycle through get request to access the relevant data for 5 day forecast
+			// 	let dataList = data.list[i];
+			// 	populate(dataList);
+			// }
+			sortObj(data);
 			// Cycle data for location & todays weather
 			let requestLocation = data.city.name;
 			console.log(requestLocation);
@@ -90,78 +93,137 @@ function getWeatherApi(lat, lon) {
 }
 
 // Uses weather data to populate 5 day forecast
-function populate(list) {
-	// format the date to display
-	let dateFormat = new Date(list.dt * 1000).toLocaleString();
+function sortObj(data) {
+	// for loop to pull data lists
+	// then loop data.list[j].dt
+	let obj;
+	for (let j = 7; j <= 40; j += 8) {
+		console.log(j);
+		if (j === 7) {
+			obj = data.list[j];
+			populate(obj, $(".card-zero"));
+		} else if (j === 15) {
+			obj = data.list[j];
+			populate(obj, $(".card-one"));
+		} else if (j === 23) {
+			obj = data.list[j];
+			populate(obj, $(".card-two"));
+		} else if (j === 31) {
+			obj = data.list[j];
+			populate(obj, $(".card-three"));
+		} else if (j === 39) {
+			obj = data.list[j];
+			populate(obj, $(".card-four"));
+		} else {
+			console.log("error");
+		}
+	}
 
-	// CREATE element & POPULATE Data by accessing the list obj passed in as param
-	let dateEl = $("<h4>").text(dayjs(dateFormat).format("ddd, DD MMM"));
-	let iconEl = $("<img>")
+	// console.log(data.list[7]); //card-zero
+	// console.log(data.list[15]); //card-one
+	// console.log(data.list[23]); //card-two
+	// console.log(data.list[31]); //card-three
+	// console.log(data.list[39]); //card-four
+
+
+	// cycle through get request to access the relevant data for 5 day forecast
+}
+function populate(obj, card) {
+	let $card = card;
+
+	// DATE
+	$card
+		.children()
+		.eq(0)
+		.text(
+			dayjs(new Date(obj.dt * 1000).toLocaleString()).format(
+				"dddd, DD MMM"
+			)
+		);
+
+	// ICON
+	$card
+		.children()
+		.eq(1)
 		.attr(
 			"src",
 			"https://openweathermap.org/img/wn/" +
-				list.weather[0].icon +
+				obj.weather[0].icon +
 				"@2x.png"
-		)
-		.addClass("card-icon");
-	// CREATE element & CREATE span to add space between the data
-	let tempEl = $("<p>")
-		.addClass("card-body flex")
-		.text("Temp:")
-		.append($("<span>").text(`${list.main.temp}°C`));
+		);
 
-	let windEl = $("<p>")
-		.addClass("card-body flex")
-		.text("Wind:")
-		.append($("<span>").text(`${list.wind.speed} mpH`));
+	$card
+		.children().eq(2).addClass("card-body flex")
+		.text(`Temp:  ${obj.main.temp}°C`);
 
-	let humidityEl = $("<p>")
-		.addClass("card-body flex")
-		.text("Humidity:")
-		.append($("<span>").text(`${list.main.humidity}%`));
+	$card
+		.children().eq(3).addClass("card-body flex")
+		.text(`Wind:  ${obj.wind.speed} mpH`);
 
-	// CREATE card and APPEND to .cards grid section
-	let cardEl = $("<div>")
-		.addClass("card")
-		.append(dateEl, iconEl, tempEl, windEl, humidityEl);
+	$card
+		.children().eq(4).addClass("card-body flex")
+		.text(`Humidity: ${obj.main.humidity}%`);
+}
 
-	$(".cards").append(cardEl);
+
+
+function appendForecastNodes() {
+	for (let i = 0; i <= 4; i++) {
+		$(".cards").append(
+			$("<div><h4></h4><img/><p></p><p></p><p></p></div>")
+		);
+	}
+
+	$(".cards").children().eq(0).addClass("card-zero");
+	$(".cards").children().eq(1).addClass("card-one");
+	$(".cards").children().eq(2).addClass("card-two");
+	$(".cards").children().eq(3).addClass("card-three");
+	$(".cards").children().eq(4).addClass("card-four");
+}
+
+function appendTodayNodes() {
+	// Append empty node elements for Today
+	$(".today").append(
+		$("<h2>"),
+		$("<h3>").addClass("normal"),
+		$("<img>"),
+		$("<p>"),
+		$("<p>"),
+		$("<p>")
+	);
+	appendForecastNodes();
+	// populateToday() will update text content to display
+	// INVOKE ON PAGE LOAD
+	// This stops node elements from been duplicated when additional locations are checked
 }
 
 // Uses weather data to populate Today's weather
 function populateToday(id, d) {
+	// Update content of appended node elements
+
 	// format the date to display
 	let dateFormat = new Date(d.dt * 1000).toLocaleString();
+	// <h2> node to populate/display location data
+	$(".today").children().eq(0).text(id);
 
-	// CREATE element & POPULATE Data by accessing the id (location) & data obj (d) passed in
-	let locationEl = $("<h2>").text(id);
-	let dateEl = $("<h3>")
-		.addClass("normal")
-		.text(dayjs(dateFormat).format("dddd, DD MMM"));
+	// <h3> node to populate/display date
+	$(".today").children().eq(1).text(dayjs(dateFormat).format("dddd, DD MMM"));
 
-	let iconEl = $("<img>").attr(
-		"src",
-		"https://openweathermap.org/img/wn/" + d.weather[0].icon + "@2x.png"
-	);
+	// <img> node to populate/display icon
+	$(".today")
+		.children()
+		.eq(2)
+		.attr(
+			"src",
+			"https://openweathermap.org/img/wn/" + d.weather[0].icon + "@2x.png"
+		);
 
-	// CREATE element & CREATE span to add space between the data
-	let tempEl = $("<p>")
-		.addClass("info")
-		.text("Temp:")
-		.append($("<span>").text(`${d.main.temp}°C`));
-
-	let windEl = $("<p>")
-		.addClass("info")
-		.text("Wind:")
-		.append($("<span>").text(`${d.wind.speed} mpH`));
-
-	let humidityEl = $("<p>")
-		.addClass("info")
-		.text("Humidity:")
-		.append($("<span>").text(`${d.main.humidity}%`));
-
-	// APPEND to .today grid section
-	$(".today").append(locationEl, dateEl, iconEl, tempEl, windEl, humidityEl);
+	// <p> node to populate/display temp data
+	$(".today").children().eq(3).text(`Temp:   ${d.main.temp}°C`);
+	// <p> node to populate/display wind data
+	$(".today").children().eq(4).text(`Wind:   ${d.wind.speed} mpH`);
+	// <p> node to populate/display humidity data
+	$(".today").children().eq(5).text(`Humidity: ${d.main.humidity}%`);
 }
 
 // CLEAR weather data shown
@@ -184,6 +246,7 @@ $(".form").on("click", ".form-btn", function (e) {
 
 	setLocalStorage();
 });
+
 init();
 // TEST THAT LOCAL STORAGE WHEN CLICKED WILL OPEN WEATHER FOR THAT LOCATION
 $(".btn").on("click", function () {

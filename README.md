@@ -10,6 +10,7 @@ This application uses
 * jQuery library within the script
 * Open Weather API to pull the weather data
 * Open Weather Geolocation API to convert a location into longitute and latitude as required with the Open Weather API
+* Local Storage is used to store and display recent search results
 * Additionally, the HTML and CSS has been validated with no issues through W3C's validation service.
 
 ## Visuals

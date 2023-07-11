@@ -72,35 +72,35 @@ span {
 	grid-template-rows: 1fr 0.5fr;
 }
 /* MAIN GRID ITEMS */
-.today {
+.grid-item-one {
 	grid-column: 6 / span 6;
 	grid-row: 1;
+}
+.grid-item-two {
+	grid-column: 5 / span 8;
+	grid-row: 2;
+}
+.grid-item-three {
+	grid-column: 1 / span 3;
+	grid-row: 1 / span 2;
+}
+
+/* MAIN GRID ITEM ONE: TODAY Section */ 
+.today {
 	padding: 1.5rem 3rem;
 	background: #7bb4c330;
 	margin: 3rem 0;
 }
-.search {
-	grid-column: 1 / span 3;
-	grid-row: 1 / span 2;
-	padding: 1rem;
-	line-height: 3rem;
-	margin: 5rem 0 0;
-}
-.forecast {
-	grid-column: 5 / span 8;
-	grid-row: 2;
-	margin: 1rem 0;
-}
-
-/* MAIN GRID ITEM ONE: TODAY Section */ 
 		/* JavaScript Generated Elements */
 .normal {
 	font-weight: normal;
 }
 
-
 /* MAIN GRID ITEM TWO - FORECAST Cards Section */
 	/* Grid Container */
+	.forecast {
+	margin: 1rem 0;
+}
 .cards {
 	display: grid;
 	grid-template-columns: repeat(5, 1fr);
@@ -128,7 +128,6 @@ span {
 .card-two,
 .card-three,
 .card-four {
-	background-color: var(--bright-blue);
 	color: var(--white);
 	padding: var(--size-xs);
 	background-color: var(--bright-blue);
@@ -137,14 +136,12 @@ span {
 	align-items: center;
 }
 
-
-/* .flex {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-} */
-
 /* MAIN GRID ITEM THREE: SEARCH Section */
+.search {
+	padding: 1rem;
+	line-height: 3rem;
+	margin: 5rem 0 0;
+}
 .text {
 	margin: 0 0 1.5rem;
 }

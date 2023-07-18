@@ -141,7 +141,7 @@ span {
 .search {
 	padding: 1rem;
 	line-height: 3rem;
-	margin: 5rem 0 0;
+	margin: 2rem 0 0;
 }
 .text {
 	margin: 0 0 1.5rem;
@@ -166,7 +166,7 @@ input {
 #search {
 	width: 100%;
 	padding: 1rem;
-	margin: 1rem 0;
+	margin: 2rem 0;
 	background-color: var(--bright-blue);
 	border: none;
 	color: white;
@@ -174,7 +174,7 @@ input {
 
 	/* STORAGE Section */
 .storage {
-	margin: 4rem 0;
+	margin: 2rem 0;
 }
 		/* JavaScript Generated Elements */
 .btn {
@@ -182,7 +182,7 @@ input {
 	text-transform: uppercase;
 	padding: 1rem 0 0.75rem;
 	text-align: center;
-	margin: 0 0 1.5rem 0;
+	margin: 0 0 1rem 0;
 	background-color: var(--dark-blue);
 	color: white;
 	width: 100%;

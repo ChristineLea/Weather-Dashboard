@@ -153,7 +153,7 @@ function populate(obj, card) {
 		.eq(0)
 		.text(
 			dayjs(new Date(obj.dt * 1000).toLocaleString()).format(
-				"dddd, DD MMM"
+				"ddd, DD MMM"
 			)
 		);
 

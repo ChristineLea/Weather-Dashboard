@@ -21,6 +21,7 @@
 
 /* BODY */
 body {
+	height: 100vh;
 	font-family: Arial, Helvetica, sans-serif;
 	color: var(--dark);
 	background-color: var(--white);

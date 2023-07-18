@@ -63,12 +63,10 @@ function setLocalStorage() {
 }
 
 // 7. Uses the geolocation API to convert the city, country to lat, lon format
-function getLatLon(city, country) {
+function getLatLon(location) {
 	let locationUrl =
 		"https://api.openweathermap.org/geo/1.0/direct?q=" +
-		city +
-		"," +
-		country +
+		location +
 		"&limit=1&appid=" +
 		API_KEY;
 
@@ -122,7 +120,6 @@ function sortObj(data) {
 	// set the corresponding [index] to each day of the forecast & populate the data
 	let obj;
 	for (let j = 7; j <= 40; j += 8) {
-		console.log(j);
 		if (j === 7) {
 			obj = data.list[j];
 			populate(obj, $(".card-zero"));
@@ -215,27 +212,27 @@ $(".form").on("click", ".form-btn", function (e) {
 	// DOM traversal to access the value from city input / country input
 	let city = $(this).parent().children().eq(2).val();
 	let country = $(this).prev().val();
-	// Invoke the function using the input value
-	getLatLon(city, country);
+	
+	let cityCountry = `${city},${country}`;
+	getLatLon(cityCountry);
 
-	// Save location search in required format
+
 	// Check if the location is already existing in local storage then push to storage array
-	let addHistory = `${city}, ${country}`;
-
-	if (storage.includes(addHistory)) {
+	if (storage.includes(cityCountry)) {
 		// CLEAR input fields
-		$(":input", ".form").val("");
+		$(":input",".form").val("");
 	} else {
-		storage.push(addHistory);
-		$(":input", ".form").val("");
+		storage.push(cityCountry);
+		$(":input",".form").val("");
 	}
 	setLocalStorage();
 });
 
 // 1. On page load, this function will execute
 init();
-// TEST THAT LOCAL STORAGE WHEN CLICKED WILL OPEN WEATHER FOR THAT LOCATION
-$(".btn").on("click", function () {
-	let thisBtnId = $(this).attr("id");
-	getLatLon(thisBtnId);
+
+// On click event - for locations saved in local storage
+$(".btn").on("click", function (e) {
+	let btn = $(e.currentTarget).attr("id");
+	getLatLon(btn);
 });
